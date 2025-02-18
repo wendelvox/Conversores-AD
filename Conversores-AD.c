@@ -29,6 +29,7 @@
 #define LED_G          11
 #define LED_B          12
 #define DEADZONE       200
+#define INTENSITY_SCALE 0.5f // Fator de escala (50% da intensidade máxima)
 
 // Variáveis globais
 ssd1306_t display;              // Display SSD1306
@@ -36,7 +37,7 @@ bool border_state = false;      // Estado da borda (simples/dupla)
 bool led_green_state = false;   // Estado do LED verde
 bool led_pwm_state = true;      // Estado do PWM dos LEDs R e B
 uint16_t x_center, y_center;    // Valores centrais calibrados do joystick
-
+uint16_t led_green_intensity = 0;
 // -------------------------------------------
 // Função: Inicializa GPIO para PWM
 // -------------------------------------------
@@ -62,6 +63,15 @@ int16_t ajuste_value(int16_t raw, int16_t center) {
 // Função: Alterna o estado do LED verde
 // ------------------------------------------------
 void altera_led_verde(uint gpio, uint32_t events) {
+    static bool is_on = false;
+
+    if (is_on) {
+        led_green_intensity = 0; // Desliga o LED
+    } else {
+        led_green_intensity = (uint16_t)(2048 * INTENSITY_SCALE); // Define a intensidade
+    }
+    
+    
     led_green_state = !led_green_state; // Alterna o estado do LED verde
     gpio_put(LED_G, led_green_state); // Atualiza o estado do LED no hardware
     border_state = !border_state; // Alterna o estado da borda
@@ -162,8 +172,8 @@ int main() {
         if (led_pwm_state) {
             int16_t adj_x = ajuste_value(raw_x, x_center); // Ajusta o valor de X
             int16_t adj_y = ajuste_value(raw_y, y_center); // Ajusta o valor de Y
-            pwm_set_gpio_level(LED_R, abs(adj_y) * 2); // Controla o LED vermelho
-            pwm_set_gpio_level(LED_B, abs(adj_x) * 2); // Controla o LED azul
+            pwm_set_gpio_level(LED_R, abs(adj_y) * INTENSITY_SCALE); // Controla o LED vermelho
+            pwm_set_gpio_level(LED_B, abs(adj_x) * INTENSITY_SCALE); // Controla o LED azul
         } else {
             pwm_set_gpio_level(LED_R, 0); // Desliga o LED vermelho
             pwm_set_gpio_level(LED_B, 0); // Desliga o LED azul
