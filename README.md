@@ -55,8 +55,8 @@ O código está organizado em funções modulares para facilitar a compreensão 
 
 ### Passo 1: Clone o Repositório
 ```bash
-git clone https://github.com/seu-usuario/nome-do-repositorio.git
-cd nome-do-repositorio
+git clone https://github.com/wendelvox/Conversores-AD.git
+
 ```
 
 ### Passo 2: Configure o Ambiente
