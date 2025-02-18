@@ -67,16 +67,8 @@ git clone https://github.com/wendelvox/Conversores-AD.git
 ```
 
 ### Passo 2: Configure o Ambiente
-Certifique-se de que o Pico SDK está configurado corretamente. Siga as instruções no [guia oficial](https://datasheets.raspberrypi.com/pico/getting-started-with-pico.pdf).
+Utilize o ambiente de desenvolvimento do VS Code complie o código.
 
-### Passo 3: Compile o Código
-No terminal, execute:
-```bash
-mkdir build
-cd build
-cmake ..
-make
-```
 
 ### Passo 4: Grave o Firmware
 Conecte o Raspberry Pi Pico ao computador no modo de gravação (pressionando o botão BOOTSEL). Copie o arquivo `.uf2` gerado para o dispositivo.
