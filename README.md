@@ -73,5 +73,6 @@ Utilize o ambiente de desenvolvimento do VS Code complie o código.
 ### Passo 4: Grave o Firmware
 Conecte o Raspberry Pi Pico ao computador no modo de gravação (pressionando o botão BOOTSEL). Copie o arquivo `.uf2` gerado para o dispositivo.
 
-
+### VIDEO
+https://drive.google.com/file/d/1iADkiSwG2tfHTSiItKZlfzRu4yvXdEvy/view?usp=sharing
 
