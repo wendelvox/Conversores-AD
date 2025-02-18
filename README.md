@@ -1,6 +1,6 @@
 # Projeto: Controle de LEDs RGB com Joystick e Display SSD1306
 ### AUTOR
-- **Wendel Souza Santos
+- **Wendel Souza Santos**
 
 ## Descrição
 
