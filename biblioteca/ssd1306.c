@@ -1,5 +1,5 @@
 #include "ssd1306.h"
-#include "font.h"
+
 
 void ssd1306_init(ssd1306_t *ssd, uint8_t width, uint8_t height, bool external_vcc, uint8_t address, i2c_inst_t *i2c) {
   ssd->width = width;
@@ -142,55 +142,3 @@ void ssd1306_line(ssd1306_t *ssd, uint8_t x0, uint8_t y0, uint8_t x1, uint8_t y1
     }
 }
 
-
-void ssd1306_hline(ssd1306_t *ssd, uint8_t x0, uint8_t x1, uint8_t y, bool value) {
-  for (uint8_t x = x0; x <= x1; ++x)
-    ssd1306_pixel(ssd, x, y, value);
-}
-
-void ssd1306_vline(ssd1306_t *ssd, uint8_t x, uint8_t y0, uint8_t y1, bool value) {
-  for (uint8_t y = y0; y <= y1; ++y)
-    ssd1306_pixel(ssd, x, y, value);
-}
-
-// Função para desenhar um caractere
-void ssd1306_draw_char(ssd1306_t *ssd, char c, uint8_t x, uint8_t y)
-{
-  uint16_t index = 0;
-  char ver=c;
-  if (c >= 'A' && c <= 'Z')
-  {
-    index = (c - 'A' + 11) * 8; // Para letras maiúsculas
-  }else  if (c >= '0' && c <= '9')
-  {
-    index = (c - '0' + 1) * 8; // Adiciona o deslocamento necessário
-  }
-  
-  for (uint8_t i = 0; i < 8; ++i)
-  {
-    uint8_t line = font[index + i];
-    for (uint8_t j = 0; j < 8; ++j)
-    {
-      ssd1306_pixel(ssd, x + i, y + j, line & (1 << j));
-    }
-  }
-}
-
-// Função para desenhar uma string
-void ssd1306_draw_string(ssd1306_t *ssd, const char *str, uint8_t x, uint8_t y)
-{
-  while (*str)
-  {
-    ssd1306_draw_char(ssd, *str++, x, y);
-    x += 8;
-    if (x + 8 >= ssd->width)
-    {
-      x = 0;
-      y += 8;
-    }
-    if (y + 8 >= ssd->height)
-    {
-      break;
-    }
-  }
-}
