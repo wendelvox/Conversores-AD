@@ -189,7 +189,8 @@ int main() {
             ssd1306_rect(&display, 0, 0, 127, 63, 1, false); // Desenha borda simples
         } else {
             ssd1306_rect(&display, 0, 0, 127, 63, 1, false); // Desenha borda dupla
-            ssd1306_rect(&display, 1, 1, 125, 61, 1, false);
+            ssd1306_rect(&display, 2, 2, 124, 60, 1, false);
+            
         }
         ssd1306_rect(&display, x_pos, y_pos, 8, 8, 1, true); // Desenha o quadrado móvel
         ssd1306_send_data(&display); // Atualiza o display
