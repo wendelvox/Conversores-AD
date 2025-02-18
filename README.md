@@ -6,6 +6,13 @@
 
 Este projeto demonstra o uso do conversor analógico-digital (ADC), PWM e comunicação I2C no microcontrolador RP2040. O objetivo é controlar dois LEDs RGB (vermelho e azul) com base nos valores lidos de um joystick analógico e representar a posição do joystick em um display OLED SSD1306. Além disso, o projeto inclui funcionalidades adicionais, como alternar estados dos LEDs e alterar o comportamento da borda no display.
 
+
+##
+![tarefa conversor ads](https://github.com/user-attachments/assets/45f6ecab-8686-4c19-83ce-ad433adaba75)
+
+
+
+
 ### Funcionalidades
 - **Leitura do joystick**: Utiliza o ADC para ler os valores dos eixos X e Y do joystick.
 - **Controle de LEDs via PWM**: Ajusta a intensidade dos LEDs vermelho e azul com base na posição do joystick.
